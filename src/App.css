@@ -36,3 +36,31 @@
     transform: rotate(360deg);
   }
 }
+
+<div style={{ display: "flex", flexWrap: "wrap", gap: "20px" }}>
+  {products.map((product, index) => (
+    <div
+      key={index}
+      style={{
+        width: "300px",
+        height: "200px", // Ajusta el tamaño del contenedor
+        border: "1px solid #ccc",
+        borderRadius: "8px",
+        overflow: "hidden",
+        textAlign: "center",
+      }}
+    >
+      <img
+        src={product.image} // Asegúrate de que el campo "image" sea correcto
+        alt={product.name}
+        style={{
+          width: "100%",
+          height: "100%",
+          objectFit: "cover", // Esto asegura que la imagen se adapte al espacio sin deformarse
+        }}
+      />
+      <h4>{product.name}</h4>
+      <p>{product.price}€</p>
+    </div>
+  ))}
+</div>
