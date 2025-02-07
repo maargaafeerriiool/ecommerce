@@ -68,7 +68,7 @@ const Navbar = () => {
             color="secondary"
             startIcon={<Logout />}
             onClick={handleLogout}
-            style={{ backgroundColor: "##ff1493", color: "BLACK" }}
+            style={{ backgroundColor: "#ff00ff", color: "white" }}
           >
             TANCAR SESSIÓ
           </Button>
