@@ -79,8 +79,8 @@ const ProductGrid = () => {
 
       {/* Contenidor de productes */}
       <Box sx={{ flex: 1, paddingLeft: "20px" }}>
-        <Typography variant="h4" sx={{ marginBottom: "20px" }}>
-          Productes disponibles
+        <Typography variant="h4" sx={{ marginBottom: "20px", fontWeight: "bold" }}>
+          PRODUCTES DISPONIBLES
         </Typography>
 
         <Grid container spacing={3}>

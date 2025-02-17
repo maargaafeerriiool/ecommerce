@@ -30,8 +30,8 @@ const SidebarFilters = ({ onFilterChange, categories }) => {
   };
 
   return (
-    <div style={{ padding: "20px", width: "250px", borderRight: "1px solid #ccc" }}>
-      <h3>Filtra per Preu</h3>
+    <div style={{ padding: "20px", width: "300px", borderRight: "2px solid #ccc" }}>
+      <h3> FILTRA PER PREU:</h3>
       <Slider
         value={priceRange}
         onChange={handlePriceChange}
@@ -41,7 +41,7 @@ const SidebarFilters = ({ onFilterChange, categories }) => {
       />
       <p>Rang seleccionat: {priceRange[0]}€ - {priceRange[1]}€</p>
 
-      <h3>Filtra per Categoria</h3>
+      <h3>FILTRA PER CATEGORIA:</h3>
       <FormGroup>
         {categories.map((category) => (
           <FormControlLabel
