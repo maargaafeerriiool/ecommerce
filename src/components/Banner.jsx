@@ -23,9 +23,10 @@ const Banner = () => {
         sx={{
           fontWeight: "bold",
           textAlign: "center",
+          color: "#ff1493", // Color dins de cometes
         }}
       >
-        ¡Explora nuestras ofertas exclusivas!
+        ¡EXPLORA LES NOSTRES OFERTES EXCLUSIVES!
       </Typography>
     </Box>
   );

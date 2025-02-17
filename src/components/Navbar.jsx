@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -12,49 +12,43 @@ import { Search, ShoppingCart, Person, Logout } from "@mui/icons-material";
 import { getAuth, signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 
-const Navbar = () => {
+const Navbar = ({ onSearch, cartItemCount }) => { // Recibe cartItemCount como prop
   const auth = getAuth();
   const navigate = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
 
   const handleLogout = async () => {
     await signOut(auth);
-    navigate("/login"); // Redirigir a login después de cerrar sesión
+    navigate("/login");
+  };
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+    if (onSearch) {
+      onSearch(event.target.value);
+    }
   };
 
   return (
     <AppBar position="static" style={{ backgroundColor: "#232f3e" }}>
       <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
-        {/* Logo */}
-        <Typography variant="h6" style={{ fontWeight: "bold" }}>
+        <Typography variant="h6" style={{ fontWeight: "bold", color: "#ff1493" }}>
           LA MEVA TENDA APPLE
         </Typography>
 
-        {/* Search Bar */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            backgroundColor: "#fff",
-            borderRadius: "5px",
-            padding: "0 10px",
-            width: "40%",
-          }}
-        >
+        <div style={{ display: "flex", alignItems: "center", backgroundColor: "#fff", borderRadius: "5px", padding: "0 10px", width: "40%" }}>
           <Search style={{ color: "#888" }} />
           <InputBase
             placeholder="Cercar productes"
-            style={{
-              marginLeft: "10px",
-              flex: 1,
-              fontSize: "14px",
-            }}
+            value={searchTerm}
+            onChange={handleSearchChange}
+            style={{ marginLeft: "10px", flex: 1, fontSize: "14px" }}
           />
         </div>
 
-        {/* Icons & Logout Button */}
         <div style={{ display: "flex", alignItems: "center", gap: "15px" }}>
-          <IconButton color="inherit">
-            <Badge badgeContent={2} color="error">
+          <IconButton color="inherit" onClick={() => navigate("/cart")}>
+            <Badge badgeContent={cartItemCount} color="error">
               <ShoppingCart />
             </Badge>
           </IconButton>
@@ -62,15 +56,14 @@ const Navbar = () => {
             <Person />
           </IconButton>
 
-          {/* Botón de Cerrar Sesión */}
           <Button
             variant="contained"
             color="secondary"
             startIcon={<Logout />}
             onClick={handleLogout}
-            style={{ backgroundColor: "#ff00ff", color: "white" }}
+            style={{ backgroundColor: "#ff1493", color: "white" }}
           >
-            TANCAR SESSIÓ
+            INICIAR SESSIÓ
           </Button>
         </div>
       </Toolbar>
